@@ -1,0 +1,265 @@
+<div class="container  background p-1">
+
+  <nav class="navbar navbar-expand-lg navbar-dark menu_head ">
+    <div class="container menu_head_list">
+      <a class="navbar-brand menu_head_list" href="/">Great Forum</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse menu_head_list " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu_head_list menu_head_list">
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" aria-current="page" href="#">Actualités</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Culture</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Finance</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Informatique</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle menu_head_list fw-bold" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Plus
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Informatique Generale</a></li>
+              <li><a class="dropdown-item" href="#">Culture</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Cuisine</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  menu_head_list fw-bold">Disabled</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container head background">
+  <img src="/images/Answer.jpg" class="img-fluid w-100">
+  <div class="head-button">
+  
+    <a href="/" class="btn btn-warning pe-5 ps-5 ">Acceuil</a>
+
+
+  </div>
+
+
+
+</div>
+
+
+<div class="container background ">
+
+  <nav class="navbar navbar-expand-lg navbar-dark menu_head ">
+    <ul class="nav ">
+      <li class="nav-item ">
+
+        <a href="#" class=" nav-button-answer active-item">REPONSES</a>
+      </li>
+      <li class="nav-item">
+
+        <a href="#" class=" nav-button-answer ">DERNIERE ACTIVITE</a>
+      </li>
+      <li class="nav-item">
+      <li class="nav-item">
+
+        <a href="#" class="nav-button-answer ">PHOTOS</a>
+      </li>
+      <a class="nav-link "></a>
+      </li>
+
+
+    </ul>
+  </nav>
+
+
+</div>
+
+<div class="container p-4 background pt-0">
+  <div class="row">
+    <div class="col-lg-6 p-4  answer-nav">
+      <a class="btn btn-danger" href="/questions" >Ecrire une question</a>
+      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo">Envoyer une reponse</button>
+    </div>
+    <div class="col-lg-6 pt-4 answer-nav  ">
+      <div class="row  text-center ">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-5   p-0 ">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Rechercher" aria-label="Rechercher"
+              aria-describedby="basic-addon2">
+            <button class="input-group-text btn  bg-success text-white border-0" id="basic-addon2"><i
+                class="fa fa-search"></i></button>
+          </div>
+
+        </div>
+        <div class="col-lg-1">
+          <span class="toolbar-divider  float-end  "></span>
+
+        </div>
+        <div class="col-lg-3 ">
+          <p>Page <span class="btn btn-info "> 1 </span>. sur 1</p>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<div class="container  background pb-5">
+  <div class="row  p-3 pt-0  ">
+    <div class="col-lg-12 left ">
+    <div>
+        <div class=" row mb-3 bg-question-user">
+          <div class="col-lg-2 user text-center p-3">
+            <img src="/images/<%= question.avatar %>" class="img-fluid text-center" width="120" height="130px">
+            <p class="username">
+              <%= question.username %>
+            </p>
+            <p class="answer-category">Categorie: <span>
+                <%= question.category %>
+              </span> </p>
+          </div>
+
+          <div class="col-lg-10 pt-4 pb-3 ps-5 pe-5">
+
+            <h4 class="question-user">
+              <%= question.question %>
+            </h4>
+            <p class="time-question">
+              <%= question.createdAt.toLocaleString() %>
+            </p>
+            <p class="mt-5 question-description-answer ">
+              <%= question.description %>
+            </p>
+
+
+
+          </div>
+        </div>
+        <% question.answers.forEach((answer)=> { %>
+          <div class=" row bg-answer mt-3">
+
+            <div class="col-lg-2 user text-center ">
+              <img src="/images/<%= answer.avatar %>" class="img-fluid rounded-pill text-center " width="120"
+                height="130px">
+
+              <p class="username">
+                <%= answer.username %>
+              </p>
+
+            </div>
+
+            <div class="col-lg-10  right-bg-answer ">
+
+              <p class="time mb-5">
+                <%= answer.createdAt %>
+              </p>
+              <p class="question_answer ">
+                <%= answer.content %>
+              </p>
+              <div class="row mt-4 pt-4  ">
+                <div class="col-lg-2 me-1 text-center user-reply ">
+                  <i class="fa fa-wechat fw-bold ">Commenter</i>
+                </div>
+                <div class="col-lg-2    ">
+                  <div class="row ">
+                    <div class="col-lg-4 text-center user-reply   voter" data-answer-id="<%= answer.answerId %>">
+                       <i class="fa fa-thumbs-up fw-bold"></i> </div>
+                    <div class="col-lg-2   p-0   vote-number"> <span class="    fw-bold">
+                        <%= answer.voter %>
+                      </span></div>
+                    <div class="col-lg-4 text-center user-reply devoter" data-answer-id="<%= answer.answerId %>"><i class="fa fa-thumbs-down fw-bold  "> </i> </div>
+                    <div class="col-lg-2   p-0   vote-number"> <span class="    fw-bold">
+                      <%= answer.devoter %>
+                    </span></div>
+                  </div>
+
+                </div>
+                <div class="col-lg-5"></div>
+
+                <div class="col-lg-2  float-end  ">
+                  <span class="fw-bold vote-user">
+                    <%= answer.voter %> voter
+                  </span>
+                </div>
+
+
+              </div>
+
+           
+
+
+              </div>
+
+
+
+          
+
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+    </div>
+ 
+  </div>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content  modal-answer">
+      <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel">Votre Commentaire</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form method="POST" action="/answers" enctype="multipart/form-data">
+          <input type="hidden" name="questionId" value="<%= question.questionId %>">
+
+          <div class="mb-3">
+            <label for="recipient-name " class="col-form-label ">Nom</label>
+            <input type="text" class="form-control" name="username" id="recipient-name" required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-profile " class="col-form-label ">Votre Profile</label>
+            <input type="file" accept="image/*" name="avatar" id="recipient-pofile" class="form-control">
+
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text " class="col-form-label ">Commentaire:</label>
+            <textarea class="form-control" name="content" id="message-text" rows="5" required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type=" button submit" class="btn btn-primary">Envoyer</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

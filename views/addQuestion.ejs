@@ -1,0 +1,145 @@
+<div class="container  background p-1">
+
+  <nav class="navbar navbar-expand-lg navbar-dark menu_head ">
+    <div class="container menu_head_list">
+      <a class="navbar-brand menu_head_list" href="/">Great Forum</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse menu_head_list " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu_head_list menu_head_list">
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" aria-current="page" href="#">Actualités</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Culture</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Finance</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link menu_head_list fw-bold" href="#">Informatique</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle menu_head_list fw-bold" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+            Plus
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  menu_head_list fw-bold">Disabled</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container head background">
+  <img src="/images/Add.jpg" class="img-fluid w-100">
+
+  <div class="head-button">
+  
+    <a href="/" class="btn btn-warning pe-5 ps-5 ">Acceuil</a>
+
+
+  </div>
+
+</div>
+<div class="container background pt-4 pb-5">
+  <div class="row p-4 ">
+
+
+
+    <div class="col-lg-9 left p-3 text-white pb-5 ">
+      <form method="POST" action="/questions" enctype="multipart/form-data">
+        <h1 class="mb-5">Votre Question</h1>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"> Username:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" required id="inputPassword">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="questionDetail" class="col-sm-2 col-form-label"> Question:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="question" required id="questionDetail">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="choix" class="col-sm-2 col-form-label"> Categorie:</label>
+          <div class="col-sm-10">
+            <select class="form-select" name="category"  aria-label="Default select example">
+              <option selected> Categorie</option>
+              <option value="Generale">Generale</option>
+              <option value="Technologie">Technologie</option>
+              <option value="Politique">Politique</option>
+              <option value="Sport">Sport</option>
+            
+            </select>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="mb-3 row">
+          <label for="exampleFormControlTextarea1" class=" col-sm-2 form-label">Description</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="description"
+              required></textarea>
+          </div>
+
+        </div>
+
+        <div class="mb-3 row">
+          <label for="formFile" class="form-label col-sm-2">Profile</label>
+          <div class="col-sm-2">
+            <input type="file" accept="image/*" name="avatar" id="images" class="form-control">
+
+          </div>
+
+        </div>
+        <button class="btn btn-primary float-end mt-5" type="submit">Envoyer</button>
+      </form>
+    </div>
+
+
+
+
+    <div class="col-lg-3 right  ">
+
+      <h3 class="title mt-5">NEVER MISS GREAT FORUM </h3>
+      <img src="/images/Subscribe.png" class="img-fluid  mt-3" alt="">
+      <img src="/images/request_app.png" class="img-fluid mt-3" alt="">
+
+
+
+      <h3 class="title ">ADVERTISSEMENT </h3>
+      <img src="/images/block.png" class="img-fluid w-100 p-2">
+
+      <h3 class="title mt-5">JOIN OUR EMAIL </h3>
+      <p>we sure will let you know every time we post something new here.
+        enter your email for notifications and join thousands other subscribers.</p>
+    
+        <form class="d-flex  ">
+          <input class="form-control me-2" type="search" placeholder="Your email..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Envoyer</button>
+        </form>
+
+    </div>
+  </div>
+
+</div>
+
+

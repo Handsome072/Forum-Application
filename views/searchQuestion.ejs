@@ -1,0 +1,197 @@
+<div class="container  background p-1">
+
+    <nav class="navbar navbar-expand-lg navbar-dark menu_head ">
+      <div class="container menu_head_list">
+        <a class="navbar-brand menu_head_list" href="/">Great Forum</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse menu_head_list " id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu_head_list menu_head_list">
+            <li class="nav-item ms-3">
+              <a class="nav-link menu_head_list fw-bold" aria-current="page" href="#">Actualités</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a class="nav-link menu_head_list fw-bold" href="#">Culture</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a class="nav-link menu_head_list fw-bold" href="#">Finance</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a class="nav-link menu_head_list fw-bold" href="#">Informatique</a>
+            </li>
+            <li class="nav-item dropdown ms-3">
+              <a class="nav-link dropdown-toggle menu_head_list fw-bold" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Plus
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  menu_head_list fw-bold">Disabled</a>
+            </li>
+          </ul>
+  
+        </div>
+      </div>
+    </nav>
+  </div>
+  
+  <div class="container head background">
+    <img src="/images/head.jpg" class="img-fluid w-100">
+  
+    <div class="head-button">
+    
+      <a href="/" class="btn btn-warning pe-4 ps-4">Acceuil</a>
+  
+  
+    </div>
+  
+  
+  </div>
+  
+  <div class="container background ">
+    <nav class="navbar navbar-expand-lg navbar-dark menu_head ">
+      <div class="menu_head_list menu-center ">
+  
+        <ul class=" navbar-nav mb-2 mb-lg-0 menu_head_list">
+  
+  
+          <li class="nav-item">
+  
+            <a href="/" class="<%= activeCategory=== 'Tout' ?'btn nav-button active-item' : 'btn nav-button' %>">All</a>
+          </li>
+  
+          <li class="nav-item">
+            <a href="/category/Generale"
+              class="<%= activeCategory === 'Generale' ? 'btn nav-button active-item': 'btn nav-button' %>">General</a>
+          </li>
+  
+          <li class="nav-item">
+            <a href="/category/Technologie"
+              class="<%= activeCategory === 'Technologie' ? 'btn nav-button active-item' : 'btn nav-button' %>">Technologie</a>
+          </li>
+          <li class="nav-item">
+            <a href="/category/Politique"
+              class="<%= activeCategory === 'Politique' ? 'btn nav-button active-item' : 'btn nav-button' %>">Politique</a>
+          </li>
+          <li class="nav-item">
+            <a href="/category/Sport"
+              class="<%= activeCategory === 'Sport' ? 'btn nav-button active-item' : 'btn nav-button' %>">Sport</a>
+          </li>
+  
+  
+        </ul>
+  
+  
+      </div>
+  </div>
+  </nav>
+  
+  </div>
+  
+  
+  <div class="container background">
+    <% if(query){%>
+    <div class="row">
+      <div class="col-lg-9 left mt-3">
+        <% if (data.length> 0) { %>
+  
+          <% for(let item of data){ %>
+            <div class="bg-question mt-3 p-3">
+              <div class=" row p-3">
+                <div class="col-lg-2">
+                  <img src="/images/<%= item.avatar %>" width="120" height="130px">
+                </div>
+                <div class="col-lg-10 ps-4">
+                  <div>
+                    <a href="/questions/<%= item.questionId %> " class="float-start question-user">
+                      <%= item.question %>
+                    </a>
+  
+  
+  
+  
+                  </div>
+  
+  
+                  <p class="mt-5 question-description-home">
+                    <%= item.description %>
+                  </p>
+                  <div>
+                    <span class=" note-question ">
+                      <%= item.username %>
+                    </span>
+                    <span class="note-question">
+                      |
+                    </span>
+                    <span class="note-question category">
+                      <%= item.category %>
+                    </span>
+                    <span class="note-question">
+                      |
+                    </span>
+                    <span class="note-question">
+                      <%= item.createdAt.toLocaleString() %>
+                    </span>
+  
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+            </div>
+            <% } %>
+              <% } else { %>
+                <p class="ms-3">Pas de question.</p>
+                <% } %>
+  
+  
+  
+  
+  
+  
+  
+      </div>
+      <div class="col-lg-3 right  mt-4 p-3">
+        <a href="/questions" class="btn btn-danger mb-4 form-control">Poser une question</a>
+        <form class="d-flex  ">
+          <input class="form-control me-2" type="search" placeholder="Rechercher ..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+  
+  
+        <h2 class="title mt-4">NEVER MISS GREAT FORUM </h2>
+        <img src="/images/Subscribe.png" class="img-fluid  mt-3" alt="">
+        <img src="/images/request_app.png" class="img-fluid mt-3" alt="">
+  
+  
+  
+        <h2 class="title ">ADVERTISSEMENT </h2>
+        <img src="/images/block.png" class="img-fluid w-100 p-2">
+  
+        <h2 class="title mt-5">JOIN OUR EMAIL </h2>
+        <p>we sure will let you know every time we post something new here.
+          enter your email for notifications and join thousands other subscribers.</p>
+  
+        <form class="d-flex  ">
+          <input class="form-control me-2" type="search" placeholder="Your email..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Envoyer</button>
+        </form>
+  
+  
+  
+      </div>
+  
+    </div>
+    <% } %>
+  </div>
