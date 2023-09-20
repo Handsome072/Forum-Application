@@ -12,16 +12,12 @@ body {
 	text-decoration: none;
 	justify-content: space-between;
    padding: 5px 10px;
-   /* background-color: rgba(92, 86, 84, 0.745);
-   color: rgb(241, 241, 222);
-   border: 2px solid rgb(12, 19, 207); */
+
 }
 
 
 .background{
-    /* background: #282621; */
-    /* width: 150%; */
-	/* /* margin: 0 auto; */
+   
 	padding: 0 px; 
 	background: #1c1c1b;
 }
