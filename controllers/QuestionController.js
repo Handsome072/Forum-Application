@@ -1,113 +1,91 @@
-import { PrismaClient } from "@prisma/client"
-import path from 'path'
+import { PrismaClient } from "@prisma/client";
+import path from 'path';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const home = async (req, res) => {
-
   try {
-
-    const categories = ['Tout','Generale', 'Technologie', 'Politique', 'Sport'];
+    const categories = ['Tout', 'Generale', 'Technologie', 'Politique', 'Sport'];
     let questions = await prisma.question.findMany({
       orderBy: {
         questionId: 'desc'
       }
     });
     res.render('home', { categories, questions, activeCategory: 'Tout' });
-
   } catch (error) {
-    console.log(error)
-    return res.render('500.ejs')
+    console.log(error);
+    return res.render('500.ejs');
   }
-
-
-}
+};
 
 const addQuestions = async (req, res) => {
-
-
   try {
     switch (req.method) {
       case "GET": {
-        return res.render('addQuestion.ejs', { error: undefined })
+        return res.render('addQuestion.ejs', { error: undefined });
       }
       case 'POST': {
-        const { username, question, category, description} = req.body
-        let error = null
+        const { username, question, category, description } = req.body;
+        let error = null;
         let data = {
           username: username
-        }
+        };
         if (!username.trim()) {
-          error = 'please add an username'
+          error = 'please add an username';
         }
         if (question) {
-          data.question = question.trim()
+          data.question = question.trim();
         } 
         if (category) {
-          data.category = category.trim()
-          
+          data.category = category.trim();
         }
         if (description) {
-          data.description = description.trim()
-          
+          data.description = description.trim();
         }
-        const {avatar} = req.files
-    
-        let newFilename = 'IMG-' +Date.now()+path.extname(avatar.name);
-        avatar.mv(`public/images/${newFilename}`, (error)=>{
-            if(error){
-                console.log(error)
-            }
-        })
-        data.avatar = newFilename
-      
+        const { avatar } = req.files;
+        let newFilename = 'IMG-' + Date.now() + path.extname(avatar.name);
+        avatar.mv(`public/images/${newFilename}`, (error) => {
+          if (error) {
+            console.log(error);
+          }
+        });
+        data.avatar = newFilename;
 
         if (!error) {
-          // insert
-         
-        await prisma.question.create({
+          await prisma.question.create({
             data: data
-          })
-          return res.redirect('/')
+          });
+          return res.redirect('/');
         } else {
-          return res.render('addQuestion.ejs', { error })
+          return res.render('addQuestion.ejs', { error });
         }
       }
       default:
-        throw new Error('invalid http method')
+        throw new Error('invalid http method');
     }
   } catch (error) {
-    console.log(error)
-    return res.render('500.ejs')
+    console.log(error);
+    return res.render('500.ejs');
   }
-
 };
-
 
 const deleteQuestion = async (req, res) => {
   const questionId = req.params.questionId;
 
-  // Supprimer les réponses liées à la question
   await prisma.answer.deleteMany({
     where: {
       questionId: parseInt(questionId)
     }
   });
-
-  // Supprimer la question elle-même
   await prisma.question.delete({
     where: {
       questionId: parseInt(questionId)
     }
   });
-
-  // Rediriger vers la page d'accueil
   res.redirect('/');
 };
 
-
 const viewQuestion = async (req, res) => {
-
   const questionId = req.params.questionId;
   const question = await prisma.question.findUnique({
     where: {
@@ -116,33 +94,26 @@ const viewQuestion = async (req, res) => {
     include: {
       answers: true
     }
-  })
-    ;
+  });
   res.render('viewQuestion.ejs', { question });
 };
 
-
 const category = async (req, res) => {
-  const categories = ['Tout','Generale', 'Technologie', 'Politique', 'Sport'];
+  const categories = ['Tout', 'Generale', 'Technologie', 'Politique', 'Sport'];
   const { category } = req.params;
   let questions = await prisma.question.findMany({ where: { category } });
   res.render('home', { categories, questions, activeCategory: category });
 };
 
 const searchQuestion = async (request, response) => {
-  const query = request.query.q
-
+  const query = request.query.q;
   const data = await prisma.question.findMany({
-      orderBy: {
-        questionId: 'asc'
-      }
-  })
+    orderBy: {
+      questionId: 'asc'
+    }
+  });
+  let resultats = data.filter(objet => objet.question.includes(query));
+  return response.render('searchQuestion.ejs', { query: query, data: resultats, activeCategory: null });
+};
 
-  let resultats = data.filter(objet => objet.question.includes(query))
-
-  return response.render('searchQuestion.ejs', { query: query, data: resultats, activeCategory:null })
-
-}
-
-
-export { home, addQuestions, viewQuestion, category, searchQuestion, deleteQuestion }
+export { home, addQuestions, viewQuestion, category, searchQuestion, deleteQuestion };
